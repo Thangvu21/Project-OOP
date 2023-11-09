@@ -1,0 +1,79 @@
+.menu {
+    -fx-background-color: #67b5c9;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+}
+.inner_pane {
+    -fx-background-color: #43e287;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+.most_inner_pane {
+    -fx-background-color: #43e287;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+.search_button {
+    -fx-background-color: #e28743;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.save_button {
+    -fx-background-color: #e28743;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.history_button {
+    -fx-background-color: #e28743;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.google_button {
+    -fx-background-color: #e28743;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.setting_button {
+    -fx-background-color: #e28743;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+
+.search_page {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style: solid;
+}
+.inner_search {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #2596be;
+}
