@@ -1,80 +1,164 @@
 package Base;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author sqlitetutorial.net
- */
 public class Connect {
-    /**
-     * Connect to a sample database
-     */
-    public static Connection connect() {
-        Connection conn = null;
-        try {
-            // db parameters
-            String url = "jdbc:sqlite:D:/App/javafx-sdk-21/demoDB/src/main/resources/database/dictionary.db";
-            // create a connection to the database
-            conn = DriverManager.getConnection(url);
+    public static List<Word> volCal = new ArrayList<>();
 
-            System.out.println("Connection to SQLite has been established.");
+    public static TrieNode root = new TrieNode();
 
-            return conn;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-        return conn;
-    }
+    private static final String url = "jdbc:sqlite:D:/App/javafx-sdk-21/demoDB/src/main/resources/database/dictionary.db";
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    public static void insertDataWord(String word, String description, String pronounce, String tableName) {
         Connection connection = null;
+        Statement statement = null;
         try {
+            Class.forName("org.sqlite.JDBC");
             // Kết nối đến cơ sở dữ liệu SQLite
-            String url = "jdbc:sqlite:D:/App/javafx-sdk-21/demoDB/src/main/resources/database/dictionary.db";
             connection = DriverManager.getConnection(url);
 
-            System.out.println("Connected to the SQLite database");
+            statement = connection.createStatement();
 
             // Tạo một lệnh SQL để truy vấn dữ liệu
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM your_table_name"; // Thay đổi thành tên bảng bạn muốn xem
+            String query = "INSERT INTO " + tableName + " (word, description, pronounce) values ('"
+                    + word + "', '" + description + "', '" + pronounce + "');";
 
-            // Thực hiện truy vấn và lấy kết quả
-            ResultSet resultSet = statement.executeQuery(query);
-
-            // In kết quả
-            while (resultSet.next()) {
-                String column1 = resultSet.getString("column1"); // Thay đổi "column1" thành tên cột bạn muốn xem
-                String column2 = resultSet.getString("column2"); // Thay đổi "column2" thành tên cột khác nếu cần
-                System.out.println("Column1: " + column1 + ", Column2: " + column2);
-            }
-
-            // Đóng kết nối và các tài nguyên liên quan
-            resultSet.close();
+            //System.out.println(query);
+            // results số lượng dòng thay đổi
+            int result = statement.executeUpdate(query);
             statement.close();
             connection.close();
+        }  catch (Exception e) {
+            System.out.println(e.getMessage());;
+        }
+    }
+
+    public static void deleteDataWord(String word, String tableName) {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+
+            connection = DriverManager.getConnection(url);
+
+            statement = connection.createStatement();
+
+            // Tạo một lệnh SQL để truy vấn dữ liệu
+            String query = "DELETE FROM " + tableName + " where word = '"
+                    + word + "'";
+            //System.out.println(query);
+            // results số lượng dòng thay đổi và update data
+            int result = statement.executeUpdate(query);
+            connection.close();
+            statement.close();
+
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void repairDataWord(String word, String descriptionEdit, String tableName) {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+
+            connection = DriverManager.getConnection(url);
+
+            statement = connection.createStatement();
+
+            // Tạo một lệnh SQL để truy vấn dữ liệu
+            String query = "UPDATE " + tableName + " set description = '"
+                    + descriptionEdit + "' where word = '" + word + "'";
+            //System.out.println(query);
+
+            // results số lượng dòng thay đổi và update data
+            int result = statement.executeUpdate(query);
+            System.out.println(result);
+
+            connection.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static ObservableList<Word> searchDataWord(String target_word, String tableName) {
+        ObservableList<Word> result = FXCollections.observableArrayList();
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+
+            connection = DriverManager.getConnection(url);
+
+            statement = connection.createStatement();
+
+            // Tạo một lệnh SQL để truy vấn dữ liệu
+            String query = "SELECT * FROM " + tableName + " where word like '"
+                    + target_word + "' ORDER BY word";
+
+            //System.out.println(query);
+            // khi query trả về đối tượng resultSet như 1 cái table có nhiều dòng
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // dùng while để lấy nó ra
+            while (resultSet.next()) {
+                String targetWord = resultSet.getString("word");
+                String explainWord = resultSet.getString("description");
+                String pronounce = resultSet.getString("pronounce");
+
+                Word word = new Word(targetWord, explainWord, pronounce);
+                result.add(word);
             }
+
+            resultSet.close();
+            connection.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
+    }
+
+    public static void importDataInTrie(String tableName) {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+
+            connection = DriverManager.getConnection(url);
+
+            statement = connection.createStatement();
+
+            // Tạo một lệnh SQL để truy vấn dữ liệu
+            String query = "SELECT * FROM " + tableName;
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String targetWord = resultSet.getString("word");
+                String explainWord = resultSet.getString("description");
+                Trie.insertWord(root, targetWord, explainWord);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static void main(String[] args) {
+        ObservableList<Word> list1 = searchDataWord("abstract", "av");
+        for (Word word : list1) {
+            System.out.println(word.showWord());
         }
     }
 }

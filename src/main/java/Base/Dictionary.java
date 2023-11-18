@@ -30,9 +30,6 @@ public class Dictionary {
     private TreeMap<String, String> dictionary_Map = new TreeMap<String, String>();
     private Scanner sc = new Scanner(System.in);
     private Connection connect;
-//    try {
-//        connect = Connect.connect();
-//    } catch {
-//
-//    }
+
+
 }
