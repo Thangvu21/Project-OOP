@@ -1,11 +1,12 @@
 package Base;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 
 public class DictionaryManagement extends Dictionary {
-    private static final String path = "" + DictionaryManagement.class.getResource("/database/dictionary.txt");
 
     public static void initDictionary() {
         Connect.importDataInTrie("av", root);
@@ -69,10 +70,23 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    public static void showDictionary() {
+        Trie.showTrie(root,"");
+    }
+
 
     public static void main(String[] args) {
-        // D:\App\javafx-sdk-21\demoDB\src\main\resources\database
-        DictionaryManagement.insertFromTxt(path);
+        String fileName = "dictionary.txt";
+
+        URL resourceURL = DictionaryManagement.class.getResource("/database/" + fileName);
+
+        if (resourceURL != null) {
+            String filePath = new File(resourceURL.getFile()).getPath();
+            DictionaryManagement.insertFromTxt(filePath);
+        } else {
+            System.out.println("Không thực hiện được");
+        }
 //        DictionaryManagement.initDictionary();
+        System.out.println(DictionaryManagement.searchWord("hello"));
     }
 }

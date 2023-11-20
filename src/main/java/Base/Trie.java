@@ -16,7 +16,7 @@ public class Trie {
     public static String searchWord(TrieNode root, String word) {
         TrieNode temp = root;
         for (int i = 0; i < word.length(); i++) {
-            if (temp.children.containsKey(word.charAt(i))) {
+            if (!temp.children.containsKey(word.charAt(i))) {
                 return "Không tìm thấy!";
             }
             temp = temp.children.get(word.charAt(i));
