@@ -1,15 +1,13 @@
 package Base;
 
 public class Trie {
-
     public static void insertWord(TrieNode root, String word, String meaning) {
         TrieNode temp = root;
-        for (int i = 0; i< word.length(); i++) {
-            int index = word.toLowerCase().charAt(i) - 'a';
-            if (temp.children[index] == null) {
-                temp.children[index] = new TrieNode();
+        for (int i = 0; i < word.length(); i++) {
+            if (!temp.children.containsKey(word.charAt(i))) {
+                temp.children.put(word.charAt(i),new TrieNode());
             }
-            temp = temp.children[index];
+            temp = temp.children.get(word.charAt(i));
         }
         temp.setIsWord();
         temp.setMeaning(meaning);
@@ -18,11 +16,10 @@ public class Trie {
     public static String searchWord(TrieNode root, String word) {
         TrieNode temp = root;
         for (int i = 0; i < word.length(); i++) {
-            int index = word.toLowerCase().charAt(i) - 'a';
-            if (temp.children[index] == null) {
+            if (temp.children.containsKey(word.charAt(i))) {
                 return "Không tìm thấy!";
             }
-            temp = temp.children[index];
+            temp = temp.children.get(word.charAt(i));
         }
         return temp.getMeaning();
     }
@@ -30,18 +27,10 @@ public class Trie {
     public static boolean startWith(TrieNode root, String prefix) {
         TrieNode temp = root;
         for (int i = 0; i < prefix.length(); i++) {
-            if(!temp.containsKey(prefix.charAt(i))) {
+            if (temp.children.containsKey(prefix.charAt(i))) {
                 return false;
             }
-            temp = temp.get(prefix.charAt(i));
-        }
-        return true;
-    }
-    public static boolean isEmpty(TrieNode temp) {
-        for (int i = 0; i < 26; i++) {
-            if (temp.children[i] != null) {
-                return false;
-            }
+            temp = temp.children.get(prefix.charAt(i));
         }
         return true;
     }
@@ -58,15 +47,16 @@ public class Trie {
                 root.setIsWord(false);
             }
             // neu ko co prefix
-            if (isEmpty(root)) {
+            if (root.children.isEmpty()) {
                 root = null;
             }
             return root;
         }
         char ch = key.charAt(depth);
-        root.children[ch - 'a'] = removeWord(root, key, depth + 1);
+        TrieNode temp = root.children.get(ch);
+        temp = removeWord(root, key, depth + 1);
 
-        if (isEmpty(root) && root.isWord() == false){
+        if (root.children.isEmpty() && root.isWord() == false){
             root = null;
         }
 
@@ -80,21 +70,27 @@ public class Trie {
         if (root.isWord()) {
             System.out.print(prefix + " " + root.getMeaning() + "\n");
         }
-        for (int i = 0; i < 26; i++) {
-            if (root.children[i] != null) {
-                showTrie(root.children[i], prefix +
-                        (char) ('a' + i));
-            }
+        for (char ch : root.children.keySet()) {
+            showTrie(root.children.get(ch), prefix +
+                    ch);
         }
+    }
+
+    public static void modifyWord(TrieNode root, String word, String meaning) {
+        TrieNode temp = root;
+        for (int i = 0; i < word.length(); i++) {
+            if (temp.children.containsKey(word.charAt(i))) {
+                System.out.println("Không tìm thấy!");
+                return;
+            }
+            temp = temp.children.get(word.charAt(i));
+        }
+        temp.setMeaning(meaning);
     }
 
     public static void main(String[] args) {
         TrieNode root = new TrieNode();
-        Trie.insertWord(root,"hello", "chao");
-        Trie.insertWord(root, "house", "nha");
-        Trie.insertWord(root, "houce", "nhe");
-        String prefix = "";
-        Trie.showTrie(root, prefix);
+        Trie.insertWord(root,"hello-ABdasd", "chao");
 
     }
 }

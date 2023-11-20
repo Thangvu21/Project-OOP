@@ -1,5 +1,6 @@
 package Base;
 
+import com.example.demodb.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,9 +11,7 @@ import java.util.List;
 public class Connect {
     public static List<Word> volCal = new ArrayList<>();
 
-    public static TrieNode root = new TrieNode();
-
-    private static final String url = "jdbc:sqlite:D:/App/javafx-sdk-21/demoDB/src/main/resources/database/dictionary.db";
+    private static final String url = "jdbc:sqlite:"+ Connect.class.getResource("/database/dictionary.db");
 
     public static void insertDataWord(String word, String description, String pronounce, String tableName) {
         Connection connection = null;
@@ -113,8 +112,9 @@ public class Connect {
                 String targetWord = resultSet.getString("word");
                 String explainWord = resultSet.getString("description");
                 String pronounce = resultSet.getString("pronounce");
+                String HTML = resultSet.getString("html");
 
-                Word word = new Word(targetWord, explainWord, pronounce);
+                Word word = new Word(targetWord, explainWord, pronounce, HTML);
                 result.add(word);
             }
 
@@ -128,7 +128,7 @@ public class Connect {
         return result;
     }
 
-    public static void importDataInTrie(String tableName) {
+    public static void importDataInTrie(String tableName, TrieNode root) {
         Connection connection = null;
         Statement statement = null;
         try {
@@ -146,9 +146,10 @@ public class Connect {
             while (resultSet.next()) {
                 String targetWord = resultSet.getString("word");
                 String explainWord = resultSet.getString("description");
+//                String HTML = resultSet.getString("html");
                 Trie.insertWord(root, targetWord, explainWord);
             }
-
+            System.out.println("init thành công");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
