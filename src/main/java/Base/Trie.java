@@ -1,7 +1,10 @@
 package Base;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Trie {
-    public static void insertWord(TrieNode root, String word, String meaning) {
+    public static void insertWord(TrieNode root, String word, String meaning, String pronounce) {
         TrieNode temp = root;
         for (int i = 0; i < word.length(); i++) {
             if (!temp.children.containsKey(word.charAt(i))) {
@@ -11,28 +14,42 @@ public class Trie {
         }
         temp.setIsWord();
         temp.setMeaning(meaning);
+        temp.setPronounce(pronounce);
     }
 
-    public static String searchWord(TrieNode root, String word) {
+    public static Word searchWord(TrieNode root, String word) {
         TrieNode temp = root;
         for (int i = 0; i < word.length(); i++) {
             if (!temp.children.containsKey(word.charAt(i))) {
-                return "Không tìm thấy!";
+                return null;
             }
             temp = temp.children.get(word.charAt(i));
         }
-        return temp.getMeaning();
+        return new Word(word, root.getMeaning(), root.getPronounce());
     }
 
     public static boolean startWith(TrieNode root, String prefix) {
         TrieNode temp = root;
         for (int i = 0; i < prefix.length(); i++) {
-            if (temp.children.containsKey(prefix.charAt(i))) {
+            if (!temp.children.containsKey(prefix.charAt(i))) {
                 return false;
             }
             temp = temp.children.get(prefix.charAt(i));
         }
         return true;
+    }
+
+    public static void modifyWord(TrieNode root, String word, String meaning, String pronounce) {
+        TrieNode temp = root;
+        for (int i = 0; i < word.length(); i++) {
+            if (!temp.children.containsKey(word.charAt(i))) {
+                System.out.println("Không tìm thấy!");
+                return;
+            }
+            temp = temp.children.get(word.charAt(i));
+        }
+        temp.setMeaning(meaning);
+        temp.setPronounce(pronounce);
     }
 
     public static TrieNode removeWord(TrieNode root, String key, int depth) {
@@ -76,21 +93,28 @@ public class Trie {
         }
     }
 
-    public static void modifyWord(TrieNode root, String word, String meaning) {
-        TrieNode temp = root;
-        for (int i = 0; i < word.length(); i++) {
-            if (temp.children.containsKey(word.charAt(i))) {
-                System.out.println("Không tìm thấy!");
-                return;
-            }
-            temp = temp.children.get(word.charAt(i));
+    public static void setView (TrieNode root, String prefix, ObservableList<Word> view) {
+        if (root == null) {
+            return;
         }
-        temp.setMeaning(meaning);
+        if (root.isWord()) {
+            view.add(new Word(prefix, root.getMeaning(), root.getPronounce()));
+        }
+        for (char ch : root.children.keySet()) {
+            setView(root.children.get(ch), prefix +
+                    ch, view);
+        }
+    }
+
+    public static ObservableList<Word> getListView (TrieNode root, String prefix) {
+        ObservableList<Word> view = FXCollections.observableArrayList();
+        setView(root, prefix, view);
+        return view;
     }
 
     public static void main(String[] args) {
         TrieNode root = new TrieNode();
-        Trie.insertWord(root,"hello-ABdasd", "chao");
 
+        System.out.println(Trie.startWith(root, "abc"));
     }
 }

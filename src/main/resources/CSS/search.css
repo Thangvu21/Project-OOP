@@ -58,7 +58,7 @@
     -fx-border-color: #2596be;
 }
 .button-speak {
-    -fx-background-image: url('../resources/Image/speak.png');
+    -fx-background-image: url('../Image/speak.png');
     -fx-background-size: 20;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;

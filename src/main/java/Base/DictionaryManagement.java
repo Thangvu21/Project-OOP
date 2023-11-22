@@ -1,5 +1,9 @@
 package Base;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import Base.Voice;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,9 +11,21 @@ import java.io.IOException;
 import java.net.URL;
 
 public class DictionaryManagement extends Dictionary {
+    public static ObservableList<Word> result = FXCollections.observableArrayList();
 
     public static void initDictionary() {
         Connect.importDataInTrie("av", root);
+//        String fileName = "dictionary.txt";
+//
+//        URL resourceURL = DictionaryManagement.class.getResource("/database/" + fileName);
+//
+//        if (resourceURL != null) {
+//            String filePath = new File(resourceURL.getFile()).getPath();
+//            DictionaryManagement.insertFromTxt(filePath);
+//        } else {
+//            System.out.println("Không thực hiện được");
+//        }
+        result = Trie.getListView(root, "");
     }
 
     public static void insertFromTxt(String path) {
@@ -22,7 +38,7 @@ public class DictionaryManagement extends Dictionary {
                 if (!line.isEmpty() && line.charAt(0) == '@') {
                     if (!word_explain.equals("")) {
                         Trie.insertWord(root, word_target, word_explain.substring(0,
-                                word_explain.length() - 2));
+                                word_explain.length() - 2), "");
                         word_explain = "";
                     }
                     word_target = line.substring(1);
@@ -42,8 +58,8 @@ public class DictionaryManagement extends Dictionary {
         Trie.removeWord(root, word, 0);
     }
 
-    public static void modifyWord(String word, String explain) {
-        Trie.modifyWord(root, word, explain);
+    public static void modifyWord(String word, String explain, String pronounce) {
+        Trie.modifyWord(root, word, explain, pronounce);
     }
 
     public static void pronounceWord(String Word) {
@@ -58,8 +74,22 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
-    public static String searchWord(String word) {
+    public static Word searchWord(String word) {
         return Trie.searchWord(root, word);
+    }
+
+    public static boolean startWith(String prefix) {
+        return Trie.startWith(root, prefix);
+    }
+
+    public static ObservableList<Word> getLookupWord(String prefix) {
+        ObservableList<Word> newOB = FXCollections.observableArrayList();
+        if (Trie.startWith(root, prefix)) {
+            newOB = Trie.getListView(root, prefix);
+        } else {
+            System.out.println("Not values!");
+        }
+        return newOB;
     }
 
     public static void lookupWord(String word) {
@@ -76,17 +106,11 @@ public class DictionaryManagement extends Dictionary {
 
 
     public static void main(String[] args) {
-        String fileName = "dictionary.txt";
-
-        URL resourceURL = DictionaryManagement.class.getResource("/database/" + fileName);
-
-        if (resourceURL != null) {
-            String filePath = new File(resourceURL.getFile()).getPath();
-            DictionaryManagement.insertFromTxt(filePath);
-        } else {
-            System.out.println("Không thực hiện được");
-        }
 //        DictionaryManagement.initDictionary();
-        System.out.println(DictionaryManagement.searchWord("hello"));
+//        result = Trie.getListView(root, "airyolzu");
+//        for (Word temp : result) {
+//            System.out.println(temp.getWord_target());
+//        }
+        DictionaryManagement.pronounceWord("hello");
     }
 }

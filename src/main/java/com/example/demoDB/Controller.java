@@ -1,8 +1,10 @@
-package com.example.demodb;
+package com.example.demoDB;
 
+import Base.DictionaryManagement;
+import Base.Word;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -27,10 +29,11 @@ public class Controller implements Initializable {
     @FXML
     private Button setting_button;
 
+    ObservableList<Word> searchList = DictionaryManagement.getLookupWord("");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        DictionaryManagement.initDictionary();
     }
 
     @FXML

@@ -1,6 +1,5 @@
 package Base;
 
-import com.example.demodb.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -146,8 +145,8 @@ public class Connect {
             while (resultSet.next()) {
                 String targetWord = resultSet.getString("word");
                 String explainWord = resultSet.getString("description");
-//                String HTML = resultSet.getString("html");
-                Trie.insertWord(root, targetWord, explainWord);
+                String pronounce = resultSet.getString("pronounce");
+                Trie.insertWord(root, targetWord, explainWord, pronounce);
             }
             System.out.println("init thành công");
         } catch (Exception e) {

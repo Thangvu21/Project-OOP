@@ -4,12 +4,13 @@ import java.util.TreeMap;
 
 public class TrieNode {
     public TreeMap<Character, TrieNode> children = new TreeMap<>();
-
     private String meaning;
     private boolean isWord;
+    private String pronounce;
 
     public TrieNode() {
         meaning = "";
+        pronounce = "";
         isWord = false;
     }
     public String getMeaning() {
@@ -32,4 +33,11 @@ public class TrieNode {
         isWord = word;
     }
 
+    public String getPronounce() {
+        return pronounce;
+    }
+
+    public void setPronounce(String pronounce) {
+        this.pronounce = pronounce;
+    }
 }

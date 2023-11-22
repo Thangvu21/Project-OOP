@@ -2,9 +2,11 @@ module com.example.demodb {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires jsapi;
+    requires javafx.web;
+    requires freetts;
 
-
-    opens com.example.demodb to javafx.fxml;
-    exports com.example.demodb;
+    opens Base to javafx.base;
+    opens com.example.demoDB to javafx.fxml;
+    exports com.example.demoDB;
+    exports Base;
 }
