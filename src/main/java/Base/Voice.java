@@ -1,5 +1,7 @@
 package Base;
 
+import com.sun.speech.freetts.VoiceManager;
+
 import java.util.Locale;
 import java.util.Scanner;
 import javax.speech.Central;
@@ -31,18 +33,7 @@ public class Voice {
 
     public static void main(String[] args) {
         try {
-            Scanner scanner = new Scanner(System.in);
-            String data = scanner.nextLine();
-            System.setProperty(VOICES, VOICE_VALUE);
-
-            Central.registerEngineCentral(CENTRAL_DATA);
-            Synthesizer sy = Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));
-
-            sy.allocate();
-            sy.resume();
-            sy.speakPlainText(data, null);
-            sy.waitEngineState(Synthesizer.QUEUE_EMPTY);
-            sy.deallocate();
+    
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

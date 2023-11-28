@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class DictionaryManagement extends Dictionary {
-    public static ObservableList<Word> result = FXCollections.observableArrayList();
+    public static ObservableList<String> result = FXCollections.observableArrayList();
 
     public static void initDictionary() {
         Connect.importDataInTrie("av", root);
@@ -54,6 +54,9 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    public static void addWord(Word word) {
+        Trie.insertWord(root, word.getWord_explain(), word.getPronounce(), word.getPronounce());
+    }
     public static void deleteWord(String word) {
         Trie.removeWord(root, word, 0);
     }
@@ -75,17 +78,28 @@ public class DictionaryManagement extends Dictionary {
     }
 
     public static Word searchWord(String word) {
-        return Trie.searchWord(root, word);
+        Word result = Trie.searchWord(root, word);
+        return result;
     }
 
     public static boolean startWith(String prefix) {
         return Trie.startWith(root, prefix);
     }
 
-    public static ObservableList<Word> getLookupWord(String prefix) {
-        ObservableList<Word> newOB = FXCollections.observableArrayList();
+    public static ObservableList<String> getLookupWord(String prefix) {
+        ObservableList<String> newOB = FXCollections.observableArrayList();
         if (Trie.startWith(root, prefix)) {
             newOB = Trie.getListView(root, prefix);
+        } else {
+            System.out.println("Not values!");
+        }
+        return newOB;
+    }
+
+    public static ObservableList<Word> getLookupWordW(String prefix) {
+        ObservableList<Word> newOB = FXCollections.observableArrayList();
+        if (Trie.startWith(root, prefix)) {
+            newOB = Trie.getListViewW(root, prefix);
         } else {
             System.out.println("Not values!");
         }
@@ -106,11 +120,12 @@ public class DictionaryManagement extends Dictionary {
 
 
     public static void main(String[] args) {
-//        DictionaryManagement.initDictionary();
-//        result = Trie.getListView(root, "airyolzu");
-//        for (Word temp : result) {
-//            System.out.println(temp.getWord_target());
-//        }
-        DictionaryManagement.pronounceWord("hello");
+        DictionaryManagement.initDictionary();
+        ObservableList<Word> observableList = getLookupWordW("");
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(observableList.get(i).getWord_target());
+        }
+//        DictionaryManagement.pronounceWord("hello");
     }
 }

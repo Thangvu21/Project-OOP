@@ -29,11 +29,10 @@ public class Controller implements Initializable {
     @FXML
     private Button setting_button;
 
-    ObservableList<Word> searchList = DictionaryManagement.getLookupWord("");
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DictionaryManagement.initDictionary();
+
+
     }
 
     @FXML

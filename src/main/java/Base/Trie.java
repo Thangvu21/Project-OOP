@@ -85,7 +85,7 @@ public class Trie {
             return;
         }
         if (root.isWord()) {
-            System.out.print(prefix + " " + root.getMeaning() + "\n");
+            System.out.print(prefix + " " + root.getMeaning() + root.getPronounce() + "\n");
         }
         for (char ch : root.children.keySet()) {
             showTrie(root.children.get(ch), prefix +
@@ -93,12 +93,12 @@ public class Trie {
         }
     }
 
-    public static void setView (TrieNode root, String prefix, ObservableList<Word> view) {
+    public static void setView (TrieNode root, String prefix, ObservableList<String> view) {
         if (root == null) {
             return;
         }
         if (root.isWord()) {
-            view.add(new Word(prefix, root.getMeaning(), root.getPronounce()));
+            view.add(prefix);
         }
         for (char ch : root.children.keySet()) {
             setView(root.children.get(ch), prefix +
@@ -106,15 +106,35 @@ public class Trie {
         }
     }
 
-    public static ObservableList<Word> getListView (TrieNode root, String prefix) {
-        ObservableList<Word> view = FXCollections.observableArrayList();
+    public static void setViewW (TrieNode root, String prefix, ObservableList<Word> view) {
+        if (root == null) {
+            return;
+        }
+        if (root.isWord()) {
+            view.add(new Word(prefix, root.getMeaning(), root.getPronounce()));
+        }
+        for (char ch : root.children.keySet()) {
+            setViewW(root.children.get(ch), prefix +
+                    ch, view);
+        }
+    }
+
+    public static ObservableList<String> getListView (TrieNode root, String prefix) {
+        ObservableList<String> view = FXCollections.observableArrayList();
         setView(root, prefix, view);
+        return view;
+    }
+
+    public static ObservableList<Word> getListViewW (TrieNode root, String prefix) {
+        ObservableList<Word> view = FXCollections.observableArrayList();
+        setViewW(root, prefix, view);
         return view;
     }
 
     public static void main(String[] args) {
         TrieNode root = new TrieNode();
-
-        System.out.println(Trie.startWith(root, "abc"));
+        Trie.insertWord(root, "abb", "cdd", "eae");
+        System.out.println(Trie.startWith(root, "ab"));
+        Trie.showTrie(root, "");
     }
 }
