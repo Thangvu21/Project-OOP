@@ -4,27 +4,20 @@ import Base.DictionaryManagement;
 import Base.Voice;
 import Base.Word;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
-import javafx.util.Callback;
-import org.w3c.dom.events.MouseEvent;
+
 
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class SearchController extends Controller implements Initializable {
+public class SearchController extends GeneralController implements Initializable {
 
     @FXML
     private TextField searchField;
@@ -35,12 +28,6 @@ public class SearchController extends Controller implements Initializable {
 
     @FXML
     private Button pronounce;
-    @FXML
-    private Button delete;
-    @FXML
-    private Button edit;
-    @FXML
-    private Button save;
 
     @FXML
     private TableView<Word> tableWord;
@@ -48,17 +35,13 @@ public class SearchController extends Controller implements Initializable {
     @FXML
     private TableColumn<Word, String> wordColumn;
 
-    private ObservableList<Word> filteredWords = DictionaryManagement.getLookupWordW("");
-
-    private String pronounceWord;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             wordColumn.setCellValueFactory(new PropertyValueFactory<>("word_target"));
 
-            tableWord.setItems(filteredWords);
+            tableWord.setItems(wordList);
 
-            FilteredList<Word> filteredData = new FilteredList<>(filteredWords, b -> true);
+            FilteredList<Word> filteredData = new FilteredList<>(wordList, b -> true);
 
             searchField.textProperty().addListener(((observable, oldValue, newValue) -> {
                 filteredData.setPredicate(Word -> {
@@ -81,20 +64,29 @@ public class SearchController extends Controller implements Initializable {
             textArea.setMouseTransparent(true);
             if(tableWord.getSelectionModel().getSelectedItem()!=null) {
                 textArea.setText(tableWord.getSelectionModel().getSelectedItem().getWord_explain());
+                searchField.setText(tableWord.getSelectionModel().getSelectedItem().word_target);
                 showWordDetails(t1);
+                addWordInHistory(new Word(t1.word_target, t1.getWord_explain(), t1.getPronounce()));
+
             }
         });
     }
 
+
     @FXML
     public void setPronounce() {
-        pronounce.setOnAction(event -> {
-            Word word = tableWord.getSelectionModel().getSelectedItem();
-            if (word != null) {
-                DictionaryManagement.pronounceWord(word.getWord_target());
-            }
-        });
+            pronounce.setOnAction(event -> {
+                try {
+                    if (searchField.getText() != null) {
+                        Voice.speakWord(searchField.getText(), languageEn);
+                    } else {
+                        System.out.println("error");
+                    }
 
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
     }
 
     public String generateHTML(Word word) {
@@ -131,6 +123,5 @@ public class SearchController extends Controller implements Initializable {
             });
         }
     }
-
 
 }

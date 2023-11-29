@@ -15,8 +15,9 @@
          <children>
             <HBox prefHeight="34.0" prefWidth="590.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Tiếng Anh" />
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="34.0">
+                  <Button mnemonicParsing="false" onAction="#transfer1" prefHeight="40.0" prefWidth="130.0" text="Tiếng Anh" />
+                  <Button mnemonicParsing="false" onAction="#transfer2" prefHeight="40.0" prefWidth="130.0" text="Tiếng Việt" />
+                  <Button mnemonicParsing="false" onAction="#speak1" prefHeight="40.0" prefWidth="34.0">
                      <graphic>
                         <ImageView>
                            <image>
@@ -35,7 +36,8 @@
             <HBox prefHeight="40.0" prefWidth="590.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="130.0" text="Tiếng Việt" />
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Tiếng Anh" />
+                  <Button mnemonicParsing="false" onAction="#speak2" prefHeight="40.0" prefWidth="40.0">
                      <graphic>
                         <ImageView>
                            <image>

@@ -155,6 +155,34 @@ public class Connect {
 
     }
 
+    public static ObservableList<Word> importDataInObser(String tableName) {
+        ObservableList<Word> results = FXCollections.observableArrayList();
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+
+            connection = DriverManager.getConnection(url);
+
+            statement = connection.createStatement();
+
+            // Tạo một lệnh SQL để truy vấn dữ liệu
+            String query = "SELECT * FROM " + tableName;
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String targetWord = resultSet.getString("word");
+                String explainWord = resultSet.getString("description");
+                String pronounce = resultSet.getString("pronounce");
+                results.add(new Word(targetWord, explainWord, pronounce));
+            }
+            System.out.println("init thành công");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return results;
+    }
     public static void main(String[] args) {
         ObservableList<Word> list1 = searchDataWord("abstract", "av");
         for (Word word : list1) {

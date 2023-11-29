@@ -4,6 +4,8 @@ module com.example.demodb {
     requires java.sql;
     requires javafx.web;
     requires freetts;
+    requires voicerss.tts;
+    requires java.desktop;
 
     opens Base to javafx.base;
     opens com.example.demoDB to javafx.fxml;

@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 
 public class DictionaryManagement extends Dictionary {
-    public static ObservableList<String> result = FXCollections.observableArrayList();
 
     public static void initDictionary() {
         Connect.importDataInTrie("av", root);
@@ -25,7 +24,6 @@ public class DictionaryManagement extends Dictionary {
 //        } else {
 //            System.out.println("Không thực hiện được");
 //        }
-        result = Trie.getListView(root, "");
     }
 
     public static void insertFromTxt(String path) {
@@ -65,17 +63,6 @@ public class DictionaryManagement extends Dictionary {
         Trie.modifyWord(root, word, explain, pronounce);
     }
 
-    public static void pronounceWord(String Word) {
-        Voice.textToSpeed(Word);
-    }
-
-    public static String translateApi(String sentence) {
-        try {
-            return Translator.translate("en", "vi", sentence);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static Word searchWord(String word) {
         Word result = Trie.searchWord(root, word);
@@ -112,10 +99,6 @@ public class DictionaryManagement extends Dictionary {
         } else {
             System.out.println("Not values!");
         }
-    }
-
-    public static void showDictionary() {
-        Trie.showTrie(root,"");
     }
 
 

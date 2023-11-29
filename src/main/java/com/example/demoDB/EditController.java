@@ -3,14 +3,12 @@ package com.example.demoDB;
 import Base.DictionaryManagement;
 import Base.Word;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditController extends SearchController {
+public class EditController extends GeneralController {
 
     // -- ADD
     @FXML
@@ -19,8 +17,6 @@ public class EditController extends SearchController {
     @FXML
     private TextField filedExplainAdd;
 
-    @FXML
-    private Button add;
 
     // -- MODIFY
     @FXML
@@ -29,15 +25,11 @@ public class EditController extends SearchController {
     @FXML
     private TextField fieldExplainModify;
 
-    @FXML
-    private Button modify;
 
     // -- DELETE
     @FXML
     private TextField fieldDeleteWord;
 
-    @FXML
-    private Button delete;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,41 +39,77 @@ public class EditController extends SearchController {
     @FXML
     public void addWord() {
         String target = fieldWordAdd.getText();
-        if (DictionaryManagement.searchWord(target) != null) {
-            Alert.AlertType.valueOf("Từ này đã tồn tại vui lòng thêm từ khác hoặc sang phần sửa từ");
-        } else {
-            Alert.AlertType.valueOf("Hãy nhập nghĩa của từ");
-            String explain = filedExplainAdd.getText();
-            Word word = new Word(target, explain);
+        if (target.isEmpty() || DictionaryManagement.searchWord(target) == null) {
+            showWarningAlert();
+            return;
+        }
+        ButtonType yes = new ButtonType("Có", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Không", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn sửa từ này không?", yes, no);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+
+        if (alert.getResult() == yes) {
+            Word word = new Word(target, filedExplainAdd.getText(), "");
             DictionaryManagement.addWord(word);
-            Alert.AlertType.valueOf("Nhập thành công");
+            wordList.add(word);
+            fieldDeleteWord.setText("");
+//            edit.setHtmlText("");
         }
     }
 
     @FXML
     public void modifyWord() {
-        String target = fieldWordAdd.getText();
-        if (DictionaryManagement.searchWord(target) == null) {
-            Alert.AlertType.valueOf("Từ này không tồn tại vui lòng sửa từ khác");
-        } else {
-            Alert.AlertType.valueOf("Hãy nhập nghĩa của từ");
-            String explain = filedExplainAdd.getText();
-            Word word = new Word(target, explain);
-            // mảng obser kia sẽ thêm vào
-            DictionaryManagement.modifyWord(target, explain, "");
-            Alert.AlertType.valueOf("Nhập thành công");
+        String target = fieldWordModify.getText();
+        if (target.isEmpty() || DictionaryManagement.searchWord(target) == null) {
+            showWarningAlert();
+            return;
+        }
+        ButtonType yes = new ButtonType("Có", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Không", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn sửa từ này không?", yes, no);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+
+        if (alert.getResult() == yes) {
+            DictionaryManagement.modifyWord(target, fieldExplainModify.getText(), "");
+            wordList.remove(DictionaryManagement.searchWord(target));
+            wordList.add(new Word(target, fieldExplainModify.getText(), ""));
+            fieldDeleteWord.setText("");
+//            edit.setHtmlText("");
         }
     }
 
     @FXML
     public void deleteWord() {
-        String target = fieldWordAdd.getText();
-        if (DictionaryManagement.searchWord(target) == null) {
-            Alert.AlertType.valueOf("Từ này không tồn tại vui lòng xóa từ khác");
-        } else {
-            DictionaryManagement.deleteWord(target);
-            // mảng xóa từ đi
-            Alert.AlertType.valueOf("Xóa thành công");
+        String target = fieldDeleteWord.getText();
+        if (target.isEmpty() || DictionaryManagement.searchWord(target) == null) {
+            showWarningAlert();
+            return;
         }
+        ButtonType yes = new ButtonType("Có", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Không", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn xoá từ này không?", yes, no);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+
+        if (alert.getResult() == yes) {
+            Word word = DictionaryManagement.searchWord(target);
+            DictionaryManagement.deleteWord(target);
+            wordList.remove(word);
+            fieldDeleteWord.setText("");
+//            edit.setHtmlText("");
+        }
+    }
+
+    public void showWarningAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Không có từ nào được chọn!");
+        alert.showAndWait();
     }
 }

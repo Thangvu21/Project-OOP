@@ -26,13 +26,13 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                <Tab onSelectionChanged="#addWord" text="Thêm từ">
+                <Tab text="Thêm từ">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TextField fx:id="fieldWordAdd" layoutX="103.0" layoutY="52.0" prefHeight="35.0" prefWidth="195.0" />
                               <TextField fx:id="filedExplainAdd" layoutX="103.0" layoutY="131.0" prefHeight="35.0" prefWidth="195.0" />
-                              <Button fx:id="add" layoutX="180.0" layoutY="219.0" mnemonicParsing="false" text="ADD" />
+                              <Button fx:id="add" layoutX="180.0" layoutY="219.0" mnemonicParsing="false" onAction="#addWord" text="ADD" />
                               <Label alignment="CENTER" layoutX="139.0" layoutY="14.0" prefHeight="32.0" prefWidth="122.0" text="WORD" />
                               <Label alignment="CENTER" layoutX="139.0" layoutY="94.0" prefHeight="32.0" prefWidth="122.0" text="EXPLAIN" />
                            </children></AnchorPane>

@@ -2,6 +2,7 @@ package com.example.demoDB;
 
 import Base.DictionaryManagement;
 import Base.Word;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller extends GeneralController implements Initializable {
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -31,7 +32,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
     }
 

@@ -30,9 +30,9 @@ public class Translator {
 
     public static void main(String[] args) {
         try {
-            String text = "Hello world!";
+            String text = "xin chào";
             //Translated text: Hallo Welt!
-            System.out.println("Translated text: " + Translator.translate("en", "vi", text));
+            System.out.println("Translated text: " + Translator.translate("vi", "en", text));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
