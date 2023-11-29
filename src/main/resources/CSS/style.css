@@ -77,6 +77,16 @@
     -fx-border-style: solid;
     -fx-border-color: #2596be;
 }
-
+.game_button {
+           -fx-border-radius: 50%;
+           -fx-background-color: green;
+           -fx-height: 30px;
+           -fx-width: 30px;
+           -fx-border: black solid 2px;
+           -fx-color: Black;
+           -fx-font-weight: bolder;
+           -fx-border-radius: 20px;
+           -fx-background-radius: 20px;
+}
 
 }

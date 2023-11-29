@@ -58,4 +58,10 @@ public class Controller extends GeneralController implements Initializable {
         AnchorPane view = FXMLLoader.load(getClass().getResource("setting.fxml"));
         borderPane.setCenter(view);
     }
+
+    @FXML
+    private void setGame(ActionEvent event) throws IOException {
+        AnchorPane view = FXMLLoader.load(getClass().getResource("game.fxml"));
+        borderPane.setCenter(view);
+    }
 }
