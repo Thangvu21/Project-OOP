@@ -66,8 +66,7 @@ public class SearchController extends GeneralController implements Initializable
                 textArea.setText(tableWord.getSelectionModel().getSelectedItem().getWord_explain());
                 searchField.setText(tableWord.getSelectionModel().getSelectedItem().word_target);
                 showWordDetails(t1);
-                addWordInHistory(new Word(t1.word_target, t1.getWord_explain(), t1.getPronounce()));
-
+                historyWord.add(t1);
             }
         });
     }
@@ -124,4 +123,8 @@ public class SearchController extends GeneralController implements Initializable
         }
     }
 
+    public void clearSearchField() {
+        searchField.clear();
+        textArea.clear();
+    }
 }

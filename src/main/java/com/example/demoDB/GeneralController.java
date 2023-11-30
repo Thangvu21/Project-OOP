@@ -9,7 +9,9 @@ import javafx.collections.ObservableList;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class GeneralController {
 
@@ -21,23 +23,12 @@ public class GeneralController {
 
     public final String langVi = "vi";
 
-    protected ObservableList<Word> wordList = Connect.importDataInObser("av");
-    protected ObservableList<Word> historyWord = FXCollections.observableArrayList();;
+    protected static ObservableList<Word> wordList = Connect.importDataInObser("av");
+    protected static Set<Word> historyWord = new HashSet<>();;
 
-
-
-    TrieNode root = new TrieNode();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
-    public void addWordInHistory(Word word) {
-        historyWord.add(word);
-        System.out.println("add success");
-    }
-
-    public ObservableList<Word> getHistoryWord() {
-        return historyWord;
-    }
 }

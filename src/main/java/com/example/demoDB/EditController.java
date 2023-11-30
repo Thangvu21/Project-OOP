@@ -25,7 +25,6 @@ public class EditController extends GeneralController {
     @FXML
     private TextField fieldExplainModify;
 
-
     // -- DELETE
     @FXML
     private TextField fieldDeleteWord;
@@ -39,13 +38,13 @@ public class EditController extends GeneralController {
     @FXML
     public void addWord() {
         String target = fieldWordAdd.getText();
-        if (target.isEmpty() || DictionaryManagement.searchWord(target) == null) {
+        if (target.isEmpty() || DictionaryManagement.searchWord(target) != null) {
             showWarningAlert();
             return;
         }
         ButtonType yes = new ButtonType("Có", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("Không", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn sửa từ này không?", yes, no);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn thêm từ này không?", yes, no);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
         alert.showAndWait();
@@ -54,8 +53,14 @@ public class EditController extends GeneralController {
             Word word = new Word(target, filedExplainAdd.getText(), "");
             DictionaryManagement.addWord(word);
             wordList.add(word);
-            fieldDeleteWord.setText("");
+            fieldWordAdd.clear();
+            filedExplainAdd.clear();
+
 //            edit.setHtmlText("");
+            alert = new Alert(Alert.AlertType.INFORMATION, "Bạn đã thêm thành công");
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.showAndWait();
         }
     }
 
@@ -100,8 +105,13 @@ public class EditController extends GeneralController {
             Word word = DictionaryManagement.searchWord(target);
             DictionaryManagement.deleteWord(target);
             wordList.remove(word);
-            fieldDeleteWord.setText("");
+            fieldDeleteWord.clear();
 //            edit.setHtmlText("");
+
+            alert = new Alert(Alert.AlertType.INFORMATION, "Bạn đã xóa thành công");
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.showAndWait();
         }
     }
 
@@ -111,5 +121,9 @@ public class EditController extends GeneralController {
         alert.setHeaderText(null);
         alert.setContentText("Không có từ nào được chọn!");
         alert.showAndWait();
+    }
+
+    public void initEditController() {
+
     }
 }

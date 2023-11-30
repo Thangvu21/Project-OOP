@@ -17,51 +17,93 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller extends GeneralController implements Initializable {
+
     @FXML
-    private BorderPane borderPane;
+    private AnchorPane mainContent;
     @FXML
-    private Button search_button;
+    private AnchorPane searchPane;
     @FXML
-    private Button save_button;
+    private AnchorPane translatePane;
     @FXML
-    private Button history_button;
+    private AnchorPane gamePane;
     @FXML
-    private Button google_button;
+    private AnchorPane historyPane;
     @FXML
-    private Button setting_button;
+    private AnchorPane settingPane;
+
+    private SearchController searchController;
+
+    private HistoryController historyController;
+
+    private EditController editController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DictionaryManagement.initDictionary();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("search.fxml"));
+            searchPane = loader.load();
+            searchController = loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("history.fxml"));
+            historyPane = loader.load();
+            historyController = loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
+            gamePane = loader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("google.fxml"));
+            translatePane = loader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("setting.fxml"));
+            settingPane = loader.load();
+            editController = loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void setMainContent(AnchorPane anchorPane) {
+        mainContent.getChildren().setAll(anchorPane);
     }
 
     @FXML
-    private void setSearch(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("search.fxml"));
-        borderPane.setCenter(view);
+    private void setSearch() throws IOException {
+        searchController.clearSearchField();
+        setMainContent(searchPane);
     }
 
     @FXML
-    private void setGoogle(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("google.fxml"));
-        borderPane.setCenter(view);
+    private void setGoogle() throws IOException {
+        setMainContent(translatePane);
     }
 
     @FXML
-    private void setHistory(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("history.fxml"));
-        borderPane.setCenter(view);
+    private void setHistory() throws IOException {
+        historyController.initHistory();
+        setMainContent(historyPane);
     }
 
     @FXML
-    private void setSetting(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("setting.fxml"));
-        borderPane.setCenter(view);
+    private void setSetting() throws IOException {
+        editController.initEditController();
+        setMainContent(settingPane);
     }
 
     @FXML
-    private void setGame(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("game.fxml"));
-        borderPane.setCenter(view);
+    private void setGame() throws IOException {
+        setMainContent(gamePane);
     }
 }

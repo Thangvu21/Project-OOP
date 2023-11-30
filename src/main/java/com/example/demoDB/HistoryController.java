@@ -2,6 +2,7 @@ package com.example.demoDB;
 
 import Base.Voice;
 import Base.Word;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,23 +25,24 @@ public class HistoryController extends GeneralController implements Initializabl
     @FXML
     private Button pronounce;
 
-    private ObservableList<Word> history = getHistoryWord();
+    private ObservableList<Word> history = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         wordColumn.setCellValueFactory(new PropertyValueFactory<>("word_target"));
-
         tableWord.setItems(history);
-        System.out.println(historyWord.size());
-    }
-
-    @FXML
-    public void selectHistory() {
         tableWord.getSelectionModel().selectedItemProperty().addListener((observableValue, wordSearchModel, t1) -> {
             textAreaHistory.setMouseTransparent(true);
             if(tableWord.getSelectionModel().getSelectedItem()!=null) {
                 textAreaHistory.setText(tableWord.getSelectionModel().getSelectedItem().getWord_explain());
             }
         });
+    }
+
+    public void initHistory() {
+        history.clear();
+        for(Word word : historyWord) {
+            history.add(word);
+        }
     }
 
     @FXML
@@ -58,5 +60,11 @@ public class HistoryController extends GeneralController implements Initializabl
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public void clearSearchField() {
+        history.clear();
+        textAreaHistory.clear();
+        initHistory();
     }
 }

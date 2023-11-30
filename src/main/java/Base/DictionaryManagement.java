@@ -53,7 +53,7 @@ public class DictionaryManagement extends Dictionary {
     }
 
     public static void addWord(Word word) {
-        Trie.insertWord(root, word.getWord_explain(), word.getPronounce(), word.getPronounce());
+        Trie.insertWord(root, word.getWord_target(), word.getWord_explain(), word.getPronounce());
     }
     public static void deleteWord(String word) {
         Trie.removeWord(root, word, 0);
