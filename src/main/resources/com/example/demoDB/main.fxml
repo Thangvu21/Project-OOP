@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,94 +12,97 @@
 
 <BorderPane fx:id="borderPane" prefHeight="481.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demoDB.Controller">
    <left>
-      <VBox prefHeight="408.0" prefWidth="169.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="428.0" prefWidth="169.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="menu" prefHeight="482.0" prefWidth="173.0" styleClass="menu" stylesheets="@../../../CSS/style.css">
+            <AnchorPane fx:id="menu" prefHeight="79.0" prefWidth="169.0" styleClass="menu" stylesheets="@../../../CSS/style.css">
                <children>
-                  <Pane fx:id="inner_pane" layoutX="17.0" layoutY="14.0" prefHeight="46.0" prefWidth="135.0" styleClass="inner_pane" stylesheets="@../../../CSS/style.css">
+                  <Pane fx:id="inner_pane" layoutX="-1.0" layoutY="-2.0" prefHeight="74.0" prefWidth="159.0" styleClass="menu" stylesheets="@../../../CSS/style.css">
                      <children>
-                        <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="34.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/dictionary.png" />
-                           </image>
-                        </ImageView>
-                        <Pane layoutX="85.0" layoutY="6.0" prefHeight="37.0" prefWidth="41.0" styleClass="inner_pane" stylesheets="@../../../CSS/style.css">
-                           <children>
-                              <ImageView fitHeight="26.0" fitWidth="44.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../Image/a.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </Pane>
+                        <Label layoutX="22.0" layoutY="16.0" prefHeight="51.0" prefWidth="130.0" text="DICTIONARY" textAlignment="CENTER" textFill="#860000">
+                           <font>
+                              <Font name="UD Digi Kyokasho N-B" size="25.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
-                  <Button fx:id="search_button" layoutX="18.0" layoutY="66.0" mnemonicParsing="false" onAction="#setSearch" prefHeight="37.0" prefWidth="135.0" styleClass="search_button" stylesheets="@../../../CSS/style.css" text="Search" textFill="#fffafa">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/search-interface-symbol.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="79.0" prefWidth="169.0" styleClass="menu1" stylesheets="@../../../CSS/style.css">
+               <children>
+                  <Button fx:id="search_button" layoutX="2.0" mnemonicParsing="false" onAction="#setSearch" prefHeight="82.0" prefWidth="169.0" styleClass="menu1" stylesheets="@../../../CSS/style.css" text="Search" textFill="#5b4343">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="UD Digi Kyokasho N-B" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="save_button" layoutX="17.0" layoutY="118.0" mnemonicParsing="false" onAction="#setGame" prefHeight="37.0" prefWidth="135.0" styleClass="save_button" stylesheets="@../../../CSS/style.css" text="Game" textFill="#fffafa">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/ghost.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Image/search-interface-symbol.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="79.0" prefWidth="169.0" styleClass="menu2" stylesheets="@../../../CSS/style.css">
+               <children>
+                  <Button fx:id="history_button" mnemonicParsing="false" onAction="#setHistory" prefHeight="78.0" prefWidth="172.0" styleClass="menu2" stylesheets="@../../../CSS/style.css" text="  History" textFill="#5b4343">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="UD Digi Kyokasho N-B" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="history_button" layoutX="17.0" layoutY="167.0" mnemonicParsing="false" onAction="#setHistory" prefHeight="37.0" prefWidth="135.0" styleClass="history_button" stylesheets="@../../../CSS/style.css" text="History" textFill="#fffafa">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/history.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Image/history.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="79.0" prefWidth="169.0" styleClass="menu3" stylesheets="@../../../CSS/style.css">
+               <children>
+                  <Button fx:id="save_button" layoutY="-2.0" mnemonicParsing="false" onAction="#setGame" prefHeight="77.0" prefWidth="171.0" styleClass="menu3" stylesheets="@../../../CSS/style.css" text="Game" textFill="#5b4343">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="UD Digi Kyokasho N-B" size="19.0" />
                      </font>
                   </Button>
-                  <Button fx:id="google_button" layoutX="17.0" layoutY="217.0" mnemonicParsing="false" onAction="#setGoogle" prefHeight="37.0" prefWidth="135.0" styleClass="google_button" stylesheets="@../../../CSS/style.css" text="Google" textFill="#fffafa">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/translate.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Image/ghost.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="79.0" prefWidth="169.0" styleClass="menu4" stylesheets="@../../../CSS/style.css">
+               <children>
+                  <Button fx:id="google_button" layoutX="-1.0" layoutY="-2.0" mnemonicParsing="false" onAction="#setGoogle" prefHeight="81.0" prefWidth="172.0" styleClass="menu4" stylesheets="@../../../CSS/style.css" text="  Google" textFill="#5b4343">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="UD Digi Kyokasho N-B" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="setting_button" layoutX="17.0" layoutY="409.0" mnemonicParsing="false" onAction="#setSetting" prefHeight="37.0" prefWidth="135.0" styleClass="setting_button" stylesheets="@../../../CSS/style.css" text="Setting" textFill="#fffafa">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/settings.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Image/translate.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="87.0" prefWidth="169.0" styleClass="menu5" stylesheets="@../../../CSS/style.css">
+               <children>
+                  <Button fx:id="setting_button" layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#setSetting" prefHeight="85.0" prefWidth="173.0" styleClass="menu5" stylesheets="@../../../CSS/style.css" text="   Setting" textFill="#5b4343">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="UD Digi Kyokasho N-B" size="17.0" />
                      </font>
                   </Button>
-               </children>
-            </AnchorPane>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Image/settings.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="mainContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="mainContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="481.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Image/nen.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </center>
 </BorderPane>

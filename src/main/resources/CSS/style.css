@@ -1,17 +1,26 @@
 .menu {
-    -fx-background-color: #67b5c9;
-    -fx-border-width: 2px 2px 2px 2px;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-border-style: solid;
+    -fx-background-color: #FF99FF;
 }
+.menu1 {
+    -fx-background-color: #CC99FF;
+}
+.menu2 {
+    -fx-background-color: #9999FF;
+}
+.menu3 {
+    -fx-background-color: #6699FF;
+}
+.menu4 {
+    -fx-background-color: #3399FF;
+}
+.menu5 {
+    -fx-background-color: #0080FF;
+}
+
 .inner_pane {
     -fx-background-color: #43e287;
-    -fx-border-width: 2px 2px 2px 2px;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-border-style: solid;
-    -fx-border-color: #748CF1;
+
+
 }
 .most_inner_pane {
     -fx-background-color: #43e287;
@@ -23,11 +32,8 @@
 }
 .search_button {
     -fx-background-color: #e28743;
-    -fx-border-width: 2px 2px 2px 2px;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-border-style: solid;
-    -fx-border-color: #141313;
+
+
 }
 .save_button {
     -fx-background-color: #e28743;
