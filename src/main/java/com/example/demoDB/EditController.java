@@ -80,10 +80,19 @@ public class EditController extends GeneralController {
 
         if (alert.getResult() == yes) {
             DictionaryManagement.modifyWord(target, fieldExplainModify.getText(), "");
-            wordList.remove(DictionaryManagement.searchWord(target));
-            wordList.add(new Word(target, fieldExplainModify.getText(), ""));
-            fieldDeleteWord.setText("");
+            for (Word word : wordList) {
+                if (word.getWord_target().equals(target)) {
+                    word.setWord_explain(fieldExplainModify.getText());
+                    break;
+                }
+            }
+            fieldWordModify.setText("");
+            fieldExplainModify.setText("");
 //            edit.setHtmlText("");
+            alert = new Alert(Alert.AlertType.INFORMATION, "Bạn đã sửa thành công");
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.showAndWait();
         }
     }
 
@@ -102,9 +111,14 @@ public class EditController extends GeneralController {
         alert.showAndWait();
 
         if (alert.getResult() == yes) {
-            Word word = DictionaryManagement.searchWord(target);
+
+            for (Word word : wordList) {
+                if (word.getWord_target().equals(target)) {
+                    wordList.remove(word);
+                    break;
+                }
+            }
             DictionaryManagement.deleteWord(target);
-            wordList.remove(word);
             fieldDeleteWord.clear();
 //            edit.setHtmlText("");
 
