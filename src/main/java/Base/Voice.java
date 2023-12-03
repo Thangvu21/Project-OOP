@@ -19,7 +19,6 @@ public class Voice {
         Thread thread = new Thread(() -> {
             try {
                 VoiceProvider tts = new VoiceProvider(API_KEY);
-
                 VoiceParameters params = new VoiceParameters(word, Languages.English_UnitedStates);
                 params.setCodec(AudioCodec.WAV);
                 params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
@@ -28,10 +27,7 @@ public class Voice {
                 params.setBase64(false);
                 params.setSSML(false);
                 params.setRate(0);
-
                 byte[] voice = tts.speech(params);
-
-                // Play the voice
                 playAudio(voice);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -44,7 +40,7 @@ public class Voice {
         Clip clip = AudioSystem.getClip();
         clip.open(audioInputStream);
         clip.start();
-        Thread.sleep(clip.getMicrosecondLength() / 1000); // Wait for audio to finish playing
+        Thread.sleep(clip.getMicrosecondLength() / 1000);
         clip.close();
         audioInputStream.close();
     }
