@@ -41,7 +41,6 @@
                <children>
                   <TextArea fx:id="textAreaHistory" layoutY="7.0" prefHeight="61.0" prefWidth="455.0" />
                   <WebView fx:id="viewWord" layoutY="68.0" prefHeight="309.0" prefWidth="455.0" />
-                  <WebView fx:id="viewWord" layoutX="4.0" layoutY="68.0" prefHeight="309.0" prefWidth="448.0" />
                </children></AnchorPane>
             <Button fx:id="pronounce" layoutX="227.0" layoutY="21.0" mnemonicParsing="false" onAction="#setPronounce" prefHeight="29.0" prefWidth="19.0" styleClass="button-speak" stylesheets="@../../../CSS/search.css">
                <font>
