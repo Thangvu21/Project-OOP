@@ -105,6 +105,7 @@ public class SearchController extends GeneralController implements Initializable
 
         return html;
     }
+
     public void showWordDetails(Word word) {
         if (word != null) {
             new Thread(() -> {
@@ -116,12 +117,12 @@ public class SearchController extends GeneralController implements Initializable
                 } catch (Exception e) {
                     e.printStackTrace();
                     Platform.runLater(() -> {
-                        viewWord.getEngine().loadContent("Error");
                     });
                 }
-            });
+            }).start();
         }
     }
+
 
     public void clearSearchField() {
         searchField.clear();

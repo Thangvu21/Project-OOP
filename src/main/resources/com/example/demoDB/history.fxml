@@ -5,8 +5,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -43,38 +41,8 @@
                <children>
                   <TextArea fx:id="textAreaHistory" layoutY="7.0" prefHeight="61.0" prefWidth="455.0" />
                   <WebView fx:id="viewWord" layoutY="68.0" prefHeight="309.0" prefWidth="455.0" />
+                  <WebView fx:id="viewWord" layoutX="4.0" layoutY="68.0" prefHeight="309.0" prefWidth="448.0" />
                </children></AnchorPane>
-            <HBox layoutX="308.0" layoutY="15.0" prefHeight="41.0" prefWidth="115.0">
-               <children>
-                  <Button fx:id="save" mnemonicParsing="false" prefHeight="41.0" prefWidth="40.0" styleClass="button-edit" stylesheets="@../../../CSS/search.css">
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/favourite.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="edit" mnemonicParsing="false" prefHeight="42.0" prefWidth="27.0" styleClass="button-edit" stylesheets="@../../../CSS/search.css">
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/edit.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="delete" mnemonicParsing="false" prefHeight="41.0" prefWidth="39.0" styleClass="button-remove" stylesheets="@../../../CSS/search.css">
-                     <graphic>
-                        <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Image/remove.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
             <Button fx:id="pronounce" layoutX="227.0" layoutY="21.0" mnemonicParsing="false" onAction="#setPronounce" prefHeight="29.0" prefWidth="19.0" styleClass="button-speak" stylesheets="@../../../CSS/search.css">
                <font>
                   <Font name="System Bold" size="12.0" />
