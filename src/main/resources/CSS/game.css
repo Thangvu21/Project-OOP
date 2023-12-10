@@ -1,0 +1,13 @@
+
+.submit {
+    -fx-background-color: transparent;
+}
+.submit: hover{
+    -fx-background-color: #FF3333;
+}
+.reset {
+    -fx-background-color: transparent;
+}
+.reset: hover{
+    -fx-background-color: #FF6600;
+}

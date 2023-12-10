@@ -2,26 +2,42 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../CSS/game.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demoDB.GameController">
    <children>
+      <ImageView fx:id="im11" fitHeight="511.0" fitWidth="741.0" layoutX="-2.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/bg.png" />
+         </image>
+      </ImageView>
       <TextField fx:id="guess" layoutX="349.0" layoutY="90.0" prefHeight="32.0" prefWidth="177.0" />
       <Text layoutX="349.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEXT INPUT" />
-      <Button layoutX="349.0" layoutY="140.0" mnemonicParsing="false" onAction="#getTextInput" text="ENTER" />
+      <Button layoutX="540.0" layoutY="84.0" mnemonicParsing="false" onAction="#getTextInput" prefHeight="56.0" prefWidth="74.0" style="-fx-background-radius: 20;" styleClass="submit" stylesheets="@../../../CSS/game.css">
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Image/submit.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Text fx:id="textForWord" layoutX="318.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="258.13671875">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Text fx:id="show" layoutX="31.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font name="Monospaced Regular" size="24.0" />
-         </font>
-      </Text>
-      <Button layoutX="495.0" layoutY="329.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+      <Button layoutX="583.0" layoutY="356.0" mnemonicParsing="false" onAction="#reset" prefHeight="56.0" prefWidth="62.0" style="-fx-background-radius: 20;" styleClass="reset" stylesheets="@../../../CSS/game.css">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Image/reset.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Text fx:id="endGame" layoutX="60.0" layoutY="338.0" onDragDetected="#playTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="364.13671875">
          <font>
             <Font size="24.0" />
@@ -32,5 +48,40 @@
             <Font size="24.0" />
          </font>
       </Text>
+      <ImageView fx:id="im1" fitHeight="150.0" fitWidth="90.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/sprite_1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="im2" fitHeight="150.0" fitWidth="90.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/sprite_2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="im3" fitHeight="150.0" fitWidth="90.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/sprite_3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="im4" fitHeight="150.0" fitWidth="90.0" layoutX="25.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/sprite_4.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="im5" fitHeight="150.0" fitWidth="90.0" layoutX="25.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/sprite_5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="im6" fitHeight="150.0" fitWidth="90.0" layoutX="25.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/sprite_6.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="im0" fitHeight="150.0" fitWidth="90.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/sprite_0.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

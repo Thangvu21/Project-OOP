@@ -97,7 +97,7 @@
    <center>
       <AnchorPane fx:id="mainContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="481.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="620.0" fitWidth="717.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Image/nen.jpg" />
                </image>

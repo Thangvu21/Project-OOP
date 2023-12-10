@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.image.*;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -14,7 +15,26 @@ import java.util.ResourceBundle;
 public class GameController extends GeneralController implements Initializable {
 
     @FXML
-    private Text show;
+    private ImageView im1;
+
+    @FXML
+    private ImageView im2;
+
+    @FXML
+    private ImageView im3;
+
+    @FXML
+    private ImageView im4;
+
+    @FXML
+    private ImageView im5;
+
+    @FXML
+    private ImageView im6;
+
+    @FXML
+    private ImageView im0;
+
     @FXML
     private Text inCorrectChar;
 
@@ -35,73 +55,36 @@ public class GameController extends GeneralController implements Initializable {
 
     public final int MAX_MISTAKE = 7;
 
-    public String setEndGame;
-
     public StringBuffer listInCorrcetChar = new StringBuffer();
 
-    public static String[] FIGURES = {
-            "   -------------    \n" +
-                    "   |                \n" +
-                    "   |                \n" +
-                    "   |                \n" +
-                    "   |                \n" +
-                    "   |     \n" +
-                    " -----   \n",
-            "   -------------    \n" +
-                    "   |           |    \n" +
-                    "   |                \n" +
-                    "   |                \n" +
-                    "   |                \n" +
-                    "   |     \n" +
-                    " -----   \n",
-            "   -------------    \n" +
-                    "   |           |    \n" +
-                    "   |           O    \n" +
-                    "   |                \n" +
-                    "   |                \n" +
-                    "   |     \n" +
-                    " -----   \n",
-            "   -------------    \n" +
-                    "   |           |    \n" +
-                    "   |           O    \n" +
-                    "   |           |    \n" +
-                    "   |                \n" +
-                    "   |     \n" +
-                    " -----   \n",
-            "   -------------    \n" +
-                    "   |           |    \n" +
-                    "   |           O    \n" +
-                    "   |          /|    \n" +
-                    "   |                \n" +
-                    "   |     \n" +
-                    " -----   \n",
-            "   -------------    \n" +
-                    "   |           |    \n" +
-                    "   |           O    \n" +
-                    "   |          /|\\  \n" +
-                    "   |                \n" +
-                    "   |     \n" +
-                    " -----   \n",
-            "   -------------    \n" +
-                    "   |           |    \n" +
-                    "   |           O    \n" +
-                    "   |          /|\\  \n" +
-                    "   |          /     \n" +
-                    "   |     \n" +
-                    " -----   \n",
-            "   -------------    \n" +
-                    "   |           |    \n" +
-                    "   |           O    \n" +
-                    "   |          /|\\  \n" +
-                    "   |          / \\  \n" +
-                    "   |     \n" +
-                    " -----   \n",
-    };
+    public void hideImage() {
+        im1.setVisible(false);
+        im2.setVisible(false);
+        im3.setVisible(false);
+        im4.setVisible(false);
+        im5.setVisible(false);
+        im6.setVisible(false);
+        im0.setVisible(false);
+    }
+
+    public void setShow() {
+        hideImage();
+        switch (inCorrcetGuess) {
+            case 0: im0.setVisible(true); break;
+            case 1: im1.setVisible(true); break;
+            case 2: im2.setVisible(true); break;
+            case 3: im3.setVisible(true); break;
+            case 4: im4.setVisible(true); break;
+            case 5: im5.setVisible(true); break;
+            case 6: im6.setVisible(true); break;
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //show
-        show.setText(FIGURES[inCorrcetGuess]);
+        setShow();
         // select Word
         word = wordList.get(getIntRandom(0,2000)).getWord_target();
         // init secretWord
@@ -156,7 +139,8 @@ public class GameController extends GeneralController implements Initializable {
             textForWord.setText(String.valueOf(secretWord));
         } else {
             listInCorrcetChar.append(letterGuess + ", ");
-            show.setText(FIGURES[++inCorrcetGuess]);
+            ++inCorrcetGuess;
+            setShow();
             inCorrectChar.setText(listInCorrcetChar.toString());
             if (inCorrcetGuess == MAX_MISTAKE) {
                 endGame.setText("YOU LOSE!! the Word is: " + word);
@@ -170,8 +154,7 @@ public class GameController extends GeneralController implements Initializable {
         word = wordList.get(getIntRandom(0,2000)).getWord_target();
         secretWord.setLength(0);
         inCorrcetGuess = 0;
-        show.setText(FIGURES[0]);
-
+        setShow();
         listInCorrcetChar.setLength(0);
         // init secretWord
         generateHiddenCharacters();

@@ -71,7 +71,6 @@ public class SearchController extends GeneralController implements Initializable
         });
     }
 
-
     @FXML
     public void setPronounce() {
             pronounce.setOnAction(event -> {
