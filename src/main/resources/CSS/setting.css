@@ -1,0 +1,18 @@
+.add {
+    -fx-background-color: transparent;
+}
+.add: hover{
+    -fx-background-color: #9999CC;
+}
+.modify {
+    -fx-background-color: transparent;
+}
+.modify: hover{
+    -fx-background-color: #FFCC66;
+}
+.remove {
+    -fx-background-color: transparent;
+}
+.remove: hover{
+    -fx-background-color: #FFCC33;
+}

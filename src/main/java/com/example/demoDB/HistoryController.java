@@ -98,6 +98,17 @@ public class HistoryController extends GeneralController implements Initializabl
     public void clearSearchField() {
         history.clear();
         textAreaHistory.clear();
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> {
+                    viewWord.getEngine().loadContent("");
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                Platform.runLater(() -> {
+                });
+            }
+        }).start();
         initHistory();
     }
 }

@@ -77,6 +77,7 @@ public class GameController extends GeneralController implements Initializable {
             case 4: im4.setVisible(true); break;
             case 5: im5.setVisible(true); break;
             case 6: im6.setVisible(true); break;
+            case 7: im0.setVisible(true); break;
         }
     }
 

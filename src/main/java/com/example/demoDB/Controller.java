@@ -92,6 +92,7 @@ public class Controller extends GeneralController implements Initializable {
 
     @FXML
     private void setHistory() throws IOException {
+        historyController.clearSearchField();
         historyController.initHistory();
         setMainContent(historyPane);
     }

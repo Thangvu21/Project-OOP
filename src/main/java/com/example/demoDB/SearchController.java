@@ -126,6 +126,17 @@ public class SearchController extends GeneralController implements Initializable
     public void clearSearchField() {
         searchField.clear();
         searchField.clear();
+        new Thread(() -> {
+            try {
+                Platform.runLater(() -> {
+                    viewWord.getEngine().loadContent("");
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                Platform.runLater(() -> {
+                });
+            }
+        }).start();
         textArea.clear();
     }
 }
