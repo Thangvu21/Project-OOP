@@ -103,12 +103,20 @@ public class DictionaryManagement extends Dictionary {
 
 
     public static void main(String[] args) {
-        DictionaryManagement.initDictionary();
-        ObservableList<Word> observableList = getLookupWordW("");
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println(observableList.get(i).getWord_target());
+        DictionaryManagement.addWord(new Word("haha", "hihi", ""));
+        DictionaryManagement.deleteWord("haha");
+        if (DictionaryManagement.searchWord("haha") == null) {
+            System.out.println("xóa chuẩn");
+        } else {
+            System.out.println("xóa lỗi");
         }
+        DictionaryManagement.lookupWord("");
+//        DictionaryManagement.initDictionary();
+//        ObservableList<Word> observableList = getLookupWordW("");
+//
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(observableList.get(i).getWord_target());
+//        }
 //        DictionaryManagement.pronounceWord("hello");
     }
 }

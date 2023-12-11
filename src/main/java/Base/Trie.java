@@ -70,8 +70,13 @@ public class Trie {
             return root;
         }
         char ch = key.charAt(depth);
-        TrieNode temp = root.children.get(ch);
-        temp = removeWord(root, key, depth + 1);
+        TrieNode child = root.children.get(ch);
+        if (child != null) {
+            child = removeWord(child, key, depth + 1);
+            if (root.children.get(ch).children.isEmpty() && !root.children.get(ch).isWord()) {
+                root.children.remove(ch);
+            }
+        }
 
         if (root.children.isEmpty() && root.isWord() == false){
             root = null;
@@ -134,7 +139,9 @@ public class Trie {
     public static void main(String[] args) {
         TrieNode root = new TrieNode();
         Trie.insertWord(root, "abb", "cdd", "eae");
-        System.out.println(Trie.startWith(root, "ab"));
+        Trie.insertWord(root, "bc", "da", "");
+        Trie.removeWord(root, "abb", 0);
+//        System.out.println(Trie.startWith(root, "ab"));
         Trie.showTrie(root, "");
     }
 }
