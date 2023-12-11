@@ -9,71 +9,102 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="475.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demoDB.EditController">
-   <children>
-      <VBox prefHeight="475.0" prefWidth="717.0">
-         <children>
-            <TabPane prefHeight="474.0" prefWidth="602.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Sửa từ">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="675.0">
-                           <children>
-                              <TextField fx:id="fieldWordModify" layoutX="253.0" layoutY="52.0" prefHeight="35.0" prefWidth="195.0" />
-                              <TextField fx:id="fieldExplainModify" layoutX="253.0" layoutY="131.0" prefHeight="35.0" prefWidth="195.0" />
-                              <Button fx:id="modify" layoutX="323.0" layoutY="195.0" mnemonicParsing="false" onAction="#modifyWord" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 20;" styleClass="modify" stylesheets="@../../../CSS/setting.css">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Image/edit1.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
-                              <Label alignment="CENTER" layoutX="290.0" layoutY="14.0" prefHeight="32.0" prefWidth="122.0" text="WORD" />
-                              <Label alignment="CENTER" layoutX="289.0" layoutY="99.0" prefHeight="32.0" prefWidth="122.0" text="EXPLAIN" />
-                           </children></AnchorPane>
-                  </content>
-                </Tab>
-                <Tab text="Thêm từ">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <TextField fx:id="fieldWordAdd" layoutX="253.0" layoutY="46.0" prefHeight="35.0" prefWidth="195.0" />
-                              <TextField fx:id="filedExplainAdd" layoutX="253.0" layoutY="134.0" prefHeight="35.0" prefWidth="195.0" />
-                              <Button fx:id="add" layoutX="323.0" layoutY="196.0" mnemonicParsing="false" onAction="#addWord" prefHeight="53.0" prefWidth="55.0" style="-fx-background-radius: 20;" styleClass="add" stylesheets="@../../../CSS/setting.css">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Image/plus.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
-                              <Label alignment="CENTER" layoutX="289.0" layoutY="14.0" prefHeight="32.0" prefWidth="122.0" text="WORD" />
-                              <Label alignment="CENTER" layoutX="289.0" layoutY="95.0" prefHeight="32.0" prefWidth="122.0" text="EXPLAIN" />
-                           </children></AnchorPane>
-                  </content>
-                </Tab>
-                  <Tab text="Xóa từ">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="600.0">
-                           <children>
-                              <TextField fx:id="fieldDeleteWord" layoutX="253.0" layoutY="94.0" prefHeight="35.0" prefWidth="195.0" />
-                              <Button fx:id="delete" layoutX="323.0" layoutY="195.0" mnemonicParsing="false" onAction="#deleteWord" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 20;" styleClass="remove" stylesheets="@../../../CSS/setting.css">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Image/remove1.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
-                              <Label alignment="CENTER" layoutX="289.0" layoutY="27.0" prefHeight="32.0" prefWidth="122.0" text="WORD" />
-                           </children></AnchorPane>
-                    </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-         </children>
-      </VBox>
-   </children>
+    <children>
+        <VBox prefHeight="475.0" prefWidth="717.0">
+            <children>
+                <TabPane prefHeight="474.0" prefWidth="602.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Sửa từ">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="675.0">
+                                    <children>
+                                        <ImageView fitHeight="699.0" fitWidth="975.0" layoutX="-101.0" layoutY="-87.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../Image/bg1.jpg" />
+                                            </image>
+                                        </ImageView>
+                                        <TextField fx:id="fieldWordModify" layoutX="253.0" layoutY="52.0" prefHeight="35.0" prefWidth="195.0" />
+                                        <TextField fx:id="fieldExplainModify" layoutX="253.0" layoutY="131.0" prefHeight="35.0" prefWidth="195.0" />
+                                        <Button fx:id="modify" layoutX="323.0" layoutY="195.0" mnemonicParsing="false" onAction="#modifyWord" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 20;" styleClass="modify" stylesheets="@../../../CSS/setting.css">
+                                            <graphic>
+                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Image/edit1.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic></Button>
+                                        <Label alignment="CENTER" layoutX="290.0" layoutY="14.0" prefHeight="32.0" prefWidth="122.0" text="WORD" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font></Label>
+                                        <Label alignment="CENTER" layoutX="289.0" layoutY="93.0" prefHeight="32.0" prefWidth="122.0" text="EXPLAIN" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font></Label>
+                                    </children></AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Thêm từ">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fitHeight="699.0" fitWidth="975.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../Image/bg1.jpg" />
+                                            </image>
+                                        </ImageView>
+                                        <TextField fx:id="fieldWordAdd" layoutX="253.0" layoutY="46.0" prefHeight="35.0" prefWidth="195.0" />
+                                        <TextField fx:id="filedExplainAdd" layoutX="253.0" layoutY="134.0" prefHeight="35.0" prefWidth="195.0" />
+                                        <Button fx:id="add" layoutX="323.0" layoutY="196.0" mnemonicParsing="false" onAction="#addWord" prefHeight="53.0" prefWidth="55.0" style="-fx-background-radius: 20;" styleClass="add" stylesheets="@../../../CSS/setting.css">
+                                            <graphic>
+                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Image/plus.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic></Button>
+                                        <Label alignment="CENTER" layoutX="289.0" layoutY="8.0" prefHeight="32.0" prefWidth="122.0" text="WORD" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font></Label>
+                                        <Label alignment="CENTER" layoutX="289.0" layoutY="95.0" prefHeight="32.0" prefWidth="122.0" text="EXPLAIN" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font></Label>
+                                    </children></AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Xóa từ">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="600.0">
+                                    <children>
+                                        <ImageView fitHeight="699.0" fitWidth="975.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../Image/bg1.jpg" />
+                                            </image>
+                                        </ImageView>
+                                        <TextField fx:id="fieldDeleteWord" layoutX="253.0" layoutY="94.0" prefHeight="35.0" prefWidth="195.0" />
+                                        <Button fx:id="delete" layoutX="323.0" layoutY="195.0" mnemonicParsing="false" onAction="#deleteWord" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 20;" styleClass="remove" stylesheets="@../../../CSS/setting.css">
+                                            <graphic>
+                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Image/remove1.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic></Button>
+                                        <Label alignment="CENTER" layoutX="289.0" layoutY="50.0" prefHeight="32.0" prefWidth="122.0" text="WORD" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font></Label>
+                                    </children></AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
