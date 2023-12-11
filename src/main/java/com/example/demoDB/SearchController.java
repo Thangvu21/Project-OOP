@@ -21,8 +21,7 @@ public class SearchController extends GeneralController implements Initializable
 
     @FXML
     private TextField searchField;
-    @FXML
-    private TextArea textArea;
+
     @FXML
     private WebView viewWord;
 
@@ -61,9 +60,9 @@ public class SearchController extends GeneralController implements Initializable
         tableWord.setItems(sortedData);
 
         tableWord.getSelectionModel().selectedItemProperty().addListener((observableValue, wordSearchModel, t1) -> {
-            textArea.setMouseTransparent(true);
+//            textArea.setMouseTransparent(true);
             if(tableWord.getSelectionModel().getSelectedItem()!=null) {
-                textArea.setText(tableWord.getSelectionModel().getSelectedItem().getWord_explain());
+//                textArea.setText(tableWord.getSelectionModel().getSelectedItem().getWord_explain());
                 searchField.setText(tableWord.getSelectionModel().getSelectedItem().word_target);
                 showWordDetails(t1);
                 historyWord.add(t1);
@@ -137,6 +136,5 @@ public class SearchController extends GeneralController implements Initializable
                 });
             }
         }).start();
-        textArea.clear();
     }
 }

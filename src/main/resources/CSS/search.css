@@ -1,11 +1,3 @@
-.inner_search {
-    -fx-background-color: #ffffff;
-    -fx-border-width: 2px 2px 2px 2px;
-
-
-
-    -fx-border-color: #2596be;
-}
 
 .first-color {
     -fx-background-color: white;
@@ -16,6 +8,62 @@
 .third-color {
     -fx-background-color: #e3e5e8;
 }
+.list-result {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #2596be;
+}
+.definition {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #2596be;
+}
+
+.button-remove {
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: #2596be;
+}
+
+.button-speak {
+    -fx-background-image: url('../Image/speak.png');
+    -fx-background-size: 20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+.label-speak {
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-text-fill: #6025be;
+    -fx-alignment: center;
+}
+.button-search {
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-color: #2596be;
+    -fx-background-size: 20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+.inner_search {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 20px;
+}
+
 .list-result {
     -fx-background-color: #ffffff;
     -fx-border-width: 2px 2px 2px 2px;
@@ -58,13 +106,18 @@
     -fx-border-color: #2596be;
 }
 .button-speak {
-    -fx-background-image: url('../Image/speak.png');
-    -fx-background-size: 20;
-    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../Image/loa.png');
+    -fx-background-size: 30;
     -fx-background-position: center;
     -fx-pref-width: 40;
     -fx-pref-height: 40;
+    -fx-background-color: transparent;
+    -fx-background-radius: 30px;
 }
+.button-speak: hover{
+    -fx-background-color: #FF6600;
+}
+
 .label-speak {
     -fx-border-width: 2px 2px 2px 2px;
     -fx-border-radius: 2px;

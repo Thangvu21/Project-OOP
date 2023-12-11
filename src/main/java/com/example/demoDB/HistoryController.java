@@ -22,9 +22,6 @@ public class HistoryController extends GeneralController implements Initializabl
     private TableColumn<Word, String> wordColumn;
 
     @FXML
-    private TextArea textAreaHistory;
-
-    @FXML
     private Button pronounce;
 
     @FXML
@@ -36,9 +33,7 @@ public class HistoryController extends GeneralController implements Initializabl
         wordColumn.setCellValueFactory(new PropertyValueFactory<>("word_target"));
         tableWord.setItems(history);
         tableWord.getSelectionModel().selectedItemProperty().addListener((observableValue, wordSearchModel, t1) -> {
-            textAreaHistory.setMouseTransparent(true);
             if(tableWord.getSelectionModel().getSelectedItem()!=null) {
-                textAreaHistory.setText(tableWord.getSelectionModel().getSelectedItem().getWord_explain());
                 showWordDetails(t1);
             }
         });
@@ -97,7 +92,6 @@ public class HistoryController extends GeneralController implements Initializabl
 
     public void clearSearchField() {
         history.clear();
-        textAreaHistory.clear();
         new Thread(() -> {
             try {
                 Platform.runLater(() -> {
